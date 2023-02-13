@@ -1,34 +1,109 @@
+#pragma once
 #include "raylib.h"
+#include "Actor.h"
+#include "Common.h"
+#include "ResourceManager.h"
+#include "Game.h"
 
-#define SCREEN_WIDTH (800)
-#define SCREEN_HEIGHT (450)
+using namespace Common;
 
-#define WINDOW_TITLE "Window title"
-
-int main(void)
+enum class State : uint8_t
 {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_TITLE);
-    SetTargetFPS(60);
+    MENU,
+    PLAY,
+    GAME_OVER
+};
 
-    Texture2D texture = LoadTexture(ASSETS_PATH"test.png"); // Check README.md for how this works
+/*
+* Cavern class will manage the game states
+*/
+class Bunner
+{
+public:
+    Bunner()
+    {
+        m_Game = Game::getInstance();
+    }
 
-    while (!WindowShouldClose())
+    void update()
+    {
+        switch (m_State)
+        {
+        case State::MENU:
+            
+            break;
+        case State::PLAY:
+            
+            break;
+        case State::GAME_OVER:
+            
+            break;
+        default:
+            break;
+        }
+    }
+
+    void draw()
     {
         BeginDrawing();
-
         ClearBackground(RAYWHITE);
 
-        const int texture_x = SCREEN_WIDTH / 2 - texture.width / 2;
-        const int texture_y = SCREEN_HEIGHT / 2 - texture.height / 2;
-        DrawTexture(texture, texture_x, texture_y, WHITE);
+        m_Game->draw();
 
-        const char* text = "OMG! IT WORKS!";
-        const Vector2 text_size = MeasureTextEx(GetFontDefault(), text, 20, 1);
-        DrawText(text, SCREEN_WIDTH / 2 - text_size.x / 2, texture_y + texture.height + text_size.y + 10, 20, BLACK);
+        switch (m_State)
+        {
+        case State::MENU:
+        {
+            
+            break;
+        }
+        case State::PLAY:
+            
+            break;
+        case State::GAME_OVER:
+            
+            break;
+        default:
+            break;
+        }
 
         EndDrawing();
     }
 
+private:
+    bool m_SpaceDown{ false };
+    State m_State{ State::MENU };
+    std::shared_ptr<Game> m_Game = nullptr;
+};
+
+
+int main(void)
+{
+    // Init Raylib
+    InitWindow(WIDTH, HEIGHT, TITLE.c_str());
+    InitAudioDevice();
+    SetTargetFPS(60);
+
+    // Load Resources
+    ResourceManager::getInstance()->loadResources();
+
+    Bunner bunner;
+
+    // Play music
+    PlayMusicStream(*ResourceManager::getMusic(std::string("theme")));
+    SetMusicVolume(*ResourceManager::getMusic(std::string("theme")), 0.5f);
+
+    // Main Loop
+    while (!WindowShouldClose())
+    {
+        UpdateMusicStream(*ResourceManager::getMusic(std::string("theme")));
+        bunner.update();
+        bunner.draw();
+    }
+
+    //CleanUp and ShutDown
+    ResourceManager::getInstance()->cleanup();
+    CloseAudioDevice();
     CloseWindow();
 
     return 0;
