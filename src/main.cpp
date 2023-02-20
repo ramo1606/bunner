@@ -4,6 +4,7 @@
 #include "Common.h"
 #include "ResourceManager.h"
 #include "Game.h"
+#include "Bunny.h"
 
 using namespace Common;
 

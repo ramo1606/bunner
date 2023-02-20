@@ -1,8 +1,9 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include <string> 
+#include <string>
 
+#include "Bunny.h"
 #include "Common.h"
 
 #include "rmem.h"
@@ -33,6 +34,10 @@ private:
 	Game();
 	static std::shared_ptr<Game> m_Instance;
 
+	int m_Frame{ 0 };
+	Bunny* m_Bunny = nullptr;
+	
+	std::vector <std::string> m_LoopedSounds;
 	ObjPool m_BoltsPool;
 
 	bool m_SpaceDown{ false };

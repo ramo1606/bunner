@@ -43,10 +43,10 @@ Vector2 Actor::getPosition() const
 
 Rectangle Actor::getActorRectangle()
 {
-	return { left(), top(), static_cast<float>(getWidht()), static_cast<float>(getHeight())};
+	return { left(), top(), static_cast<float>(getWidth()), static_cast<float>(getHeight())};
 }
 
-int Actor::getWidht()
+int Actor::getWidth()
 {
 	return m_ActorSize.width;
 }

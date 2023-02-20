@@ -37,7 +37,7 @@ public:
 
 	Vector2 getPosition() const;
 	Rectangle getActorRectangle();
-	int getWidht();
+	int getWidth();
 	int getHeight();
 	const std::string& getName() const;
 

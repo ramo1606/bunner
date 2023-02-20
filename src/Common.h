@@ -6,71 +6,27 @@
 namespace Common
 {
     //ENUMS
-    enum class FRUIT_TYPE : std::uint8_t
+    enum class PlayerState : std::uint8_t
     {
-        APPLE,
-        RASPBERRY,
+        ALIVE,
+        SPLAT,
         LEMON,
-        EXTRA_HEALTH,
-        EXTRA_LIFE
+        SPLASH,
+        EAGLE
     };
 
-    enum class ROBOT_TYPE : std::uint8_t
-    {
-        NORMAL,
-        AGRESSIVE,
-        NONE
-    };
-
-    enum class POP_TYPE : std::uint8_t
-    {
-        FRUIT,
-        ENEMY
-    };
+    constexpr int DIRECTION_UP = 0;
+    constexpr int DIRECTION_RIGHT = 1;
+    constexpr int DIRECTION_DOWN = 2;
+    constexpr int DIRECTION_LEFT = 3;
 
     //CONSTANTS
-    const std::string TITLE = "Cavern";
+    const std::string TITLE = "Bunner";
 
-    constexpr int WIDTH = 800;
-    constexpr int HEIGHT = 480;
+    constexpr int WIDTH = 480;
+    constexpr int HEIGHT = 800;
 
-    constexpr int NUM_ROWS = 18;
-    constexpr int NUM_COLUMNS = 28;
+    constexpr int ROW_HEIGHT = 40;
 
-    constexpr int LEVEL_X_OFFSET = 50;
-    constexpr int GRID_BLOCK_SIZE = 25;
-
-    // Widths of the letters A to Z in the font images
-    const char CHAR_WIDTH[] = { 27, 26, 25, 26, 25, 25, 26, 25, 12, 26, 26, 25, 33, 25, 26,
-                                25, 27, 26, 26, 25, 26, 26, 38, 25, 25, 25 };
-
-    //LEVELS
-    const std::vector<std::vector<std::string>> LEVELS = { {"XXXXX     XXXXXXXX     XXXXX",
-                                                            "", "", "", "",
-                                                            "   XXXXXXX        XXXXXXX   ",
-                                                            "", "", "",
-                                                            "   XXXXXXXXXXXXXXXXXXXXXX   ",
-                                                            "", "", "",
-                                                            "XXXXXXXXX          XXXXXXXXX",
-                                                            "", "", ""},
-
-                                                            {"XXXX    XXXXXXXXXXXX    XXXX",
-                                                            "", "", "", "",
-                                                            "    XXXXXXXXXXXXXXXXXXXX    ",
-                                                            "", "", "",
-                                                            "XXXXXX                XXXXXX",
-                                                            "      X              X      ",
-                                                            "       X            X       ",
-                                                            "        X          X        ",
-                                                            "         X        X         ",
-                                                            "", "", ""},
-
-                                                            {"XXXX    XXXX    XXXX    XXXX",
-                                                            "", "", "", "",
-                                                            "  XXXXXXXX        XXXXXXXX  ",
-                                                            "", "", "",
-                                                            "XXXX      XXXXXXXX      XXXX",
-                                                            "", "", "",
-                                                            "    XXXXXX        XXXXXX    ",
-                                                            "", "", ""} };
+    constexpr bool DEBUG_SHOW_ROW_BOUNDARIES = false;
 }
