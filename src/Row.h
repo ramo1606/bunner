@@ -11,7 +11,7 @@ using namespace Common;
 class Row : public SmartActor 
 {
 public:
-	Row(std::string baseImage, int index, float y);
+	Row(std::string& baseImage, int index, float y);
 	Row(const Row&) = default;
 	Row& operator=(const Row&) = default;
 	~Row() = default;
@@ -22,7 +22,7 @@ public:
 	std::pair<PlayerState, int> checkCollision(float x);
 	bool allowMovment(float x);
 
-private:
+protected:
 	int m_Index{ 0 };
 	int m_Dx{ 0 };			// X direction of moving elements on this row, Zero by default - only ActiveRows and Rail have moving elements
 };

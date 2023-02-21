@@ -3,6 +3,12 @@
 #include <map>
 
 #include "raylib.h"
+#include "rmem.h"
+
+#include "Car.h"
+#include "Log.h"
+#include "Train.h"
+
 #include "Common.h"
 
 using namespace Common;
@@ -27,6 +33,14 @@ public:
 	static Sound* getSound(std::string& obj);
 	static Music* getMusic(std::string& obj);
 
+	static Car* getCar(int dx, Vector2 pos);
+	static Log* getLog(int dx, Vector2 pos);
+	static Train* getTrain(int dx, Vector2 pos);
+
+	static void destroyCar(Car& car);
+	static void destroyLog(Log& log);
+	static void destroyTrain(Train& train);
+
 private:
 	ResourceManager();
 	static std::shared_ptr<ResourceManager> m_Instance;
@@ -34,4 +48,10 @@ private:
 	std::map<std::string, Texture2D> m_SpritesMap;
 	std::map<std::string, Sound> m_SoundsMap;
 	std::map<std::string, Music> m_MusicMap;
+
+	ObjPool m_CarsPool = CreateObjPool(sizeof(Car), 30);
+	ObjPool m_LogsPool = CreateObjPool(sizeof(Log), 30);
+	ObjPool m_TrainsPool = CreateObjPool(sizeof(Train), 30);
+	//ObjPool m_OrbsPool = CreateObjPool(sizeof(Orb), 10);
+	//ObjPool m_BoltsPool = CreateObjPool(sizeof(Bolt), 40);
 };

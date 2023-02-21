@@ -24,7 +24,7 @@ using ActorSize = struct ActorSize;
 class Actor
 {
 public:
-	Actor(std::string name = "", Vector2 pos = { 0, 0 }, Texture2D* image = nullptr);
+	Actor(std::string& name, Vector2 pos = { 0, 0 }, Texture2D* image = nullptr);
 	Actor(const Actor&) = default;
 	Actor& operator=(const Actor&) = default;
 	virtual ~Actor() = default;

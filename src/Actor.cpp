@@ -1,6 +1,6 @@
 #include "Actor.h"
 
-Actor::Actor(std::string name, Vector2 pos, Texture2D* image)
+Actor::Actor(std::string& name, Vector2 pos, Texture2D* image)
 	: m_Name(name),
 	  m_Pos(pos),
 	  m_Image(image)

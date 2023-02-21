@@ -10,7 +10,6 @@ std::shared_ptr<Game> Game::m_Instance = nullptr;
 
 Game::Game()
 {
-	m_BoltsPool = CreateObjPool(sizeof(int), 40);
 }
 
 std::shared_ptr<Game> Game::getInstance()

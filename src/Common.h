@@ -15,6 +15,12 @@ namespace Common
         EAGLE
     };
 
+    enum class MoverType : std::uint8_t 
+    {
+        CAR,
+        LOG
+    };
+
     constexpr int DIRECTION_UP = 0;
     constexpr int DIRECTION_RIGHT = 1;
     constexpr int DIRECTION_DOWN = 2;

@@ -55,7 +55,9 @@ public:
         {
         case State::MENU:
         {
-            
+            // Draw title screen
+            DrawTexture(*ResourceManager::getSprite(std::string("title")), 0, 0, WHITE);
+            DrawTexture(*ResourceManager::getSprite(std::string("start0")), (WIDTH - 270) * 0.5f, HEIGHT - 240, WHITE);
             break;
         }
         case State::PLAY:

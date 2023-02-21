@@ -83,6 +83,48 @@ Music* ResourceManager::getMusic(std::string& obj)
 	return &(it->second);
 }
 
+Car* ResourceManager::getCar(int dx, Vector2 pos)
+{
+	//Allocate new car in CarsPool
+	Car* newCar = static_cast<Car*>(ObjPoolAlloc(&m_Instance->m_CarsPool));
+	new(newCar) Car(dx, pos);
+	return newCar;
+}
+
+Log* ResourceManager::getLog(int dx, Vector2 pos)
+{
+	//Allocate new log in LogsPool
+	Log* newLog = static_cast<Log*>(ObjPoolAlloc(&m_Instance->m_LogsPool));
+	new(newLog) Log(dx, pos);
+	return newLog;
+}
+
+Train* ResourceManager::getTrain(int dx, Vector2 pos)
+{
+	//Allocate new car in LogsPool
+	Train* newTrain = static_cast<Train*>(ObjPoolAlloc(&m_Instance->m_TrainsPool));
+	new(newTrain) Train(dx, pos);
+	return newTrain;
+}
+
+void ResourceManager::destroyCar(Car& car)
+{
+	car.~Car();
+	ObjPoolCleanUp(&m_Instance->m_CarsPool, (void**)&car);
+}
+
+void ResourceManager::destroyLog(Log& log)
+{
+	log.~Log();
+	ObjPoolCleanUp(&m_Instance->m_LogsPool, (void**)&log);
+}
+
+void ResourceManager::destroyTrain(Train& train)
+{
+	train.~Train();
+	ObjPoolCleanUp(&m_Instance->m_TrainsPool, (void**)&train);
+}
+
 void ResourceManager::cleanup()
 {
 	//Unload resources and clear maps.
@@ -106,4 +148,8 @@ void ResourceManager::cleanup()
 		UnloadMusicStream(music.second);
 	}
 	musicMap.clear();
+
+	DestroyObjPool(&m_Instance->m_CarsPool);
+	DestroyObjPool(&m_Instance->m_LogsPool);
+	DestroyObjPool(&m_Instance->m_TrainsPool);
 }

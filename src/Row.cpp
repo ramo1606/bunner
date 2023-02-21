@@ -1,7 +1,7 @@
 #include "Row.h"
 #include "ResourceManager.h"
 
-Row::Row(std::string baseImage, int index, float y) : 
+Row::Row(std::string& baseImage, int index, float y) : 
 	SmartActor({0, y}, ResourceManager::getSprite(baseImage + std::to_string(index))),
 	m_Index(index)
 {
